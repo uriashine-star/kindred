@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kindred — Talk with Sage</title>
+<meta name="description" content="Kindred: a warm, evidence-based relationship coach you can talk to out loud, plus a science-backed Ideal Partner Lab.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💞</text></svg>">
+</head>
+<body>
+<div class="bg-orbs" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<header class="top">
+  <div class="brand">
+    <span class="logo">◐</span>
+    <div>
+      <h1>Kindred</h1>
+      <p>evidence-based relationship coaching</p>
+    </div>
+  </div>
+  <nav class="tabs" role="tablist">
+    <button class="tab active" data-view="talk" role="tab">Talk with Sage</button>
+    <button class="tab" data-view="lab" role="tab">Ideal Partner Lab</button>
+  </nav>
+  <button class="icon-btn" id="settingsBtn" aria-label="Settings">⚙︎</button>
+</header>
+
+<main class="stage">
+  <!-- Face -->
+  <section class="face-wrap">
+    <div class="face-card">
+      <div id="face" class="face" aria-label="Sage, your coach"></div>
+      <div class="status" id="status"><span class="dot"></span><span id="statusText">Tap “Begin” to start</span></div>
+      <div class="caption" id="caption" aria-live="polite"></div>
+    </div>
+    <div class="controls">
+      <button class="mic" id="micBtn" aria-label="Hold a conversation by voice">
+        <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M12 15a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-2.08A7 7 0 0 0 19 12h-2Z"/></svg>
+        <span id="micLabel">Begin</span>
+      </button>
+      <label class="toggle"><input type="checkbox" id="handsFree" checked> <span>Hands-free conversation</span></label>
+      <button class="ghost small" id="muteBtn">🔊 Voice on</button>
+    </div>
+  </section>
+
+  <!-- Talk view -->
+  <section class="panel view" id="view-talk">
+    <div class="chat" id="chat" aria-live="polite"></div>
+    <div class="chips" id="chips">
+      <button class="chip">We keep having the same fight</button>
+      <button class="chip">How do I get over a breakup?</button>
+      <button class="chip">I get anxious when they don't text back</button>
+      <button class="chip">Help me figure out my ideal partner</button>
+    </div>
+    <form class="composer" id="composer">
+      <input id="textIn" autocomplete="off" placeholder="Type, or press the mic and just talk…">
+      <button class="send" aria-label="Send">➤</button>
+    </form>
+    <p class="fine">Sage is an AI coach, not a therapist. If you're in danger or crisis, call your local emergency number (US: 911, or 988 for the Suicide &amp; Crisis Lifeline).</p>
+  </section>
+
+  <!-- Lab view -->
+  <section class="panel view hidden" id="view-lab">
+    <div id="lab"></div>
+  </section>
+</main>
+
+<!-- Settings -->
+<dialog id="settings">
+  <form method="dialog" class="settings">
+    <h2>Settings</h2>
+    <label>Sage's voice
+      <select id="voiceSel"></select>
+    </label>
+    <label>Speaking speed <input type="range" id="rateIn" min="0.7" max="1.3" step="0.05" value="1"></label>
+    <hr>
+    <h3>Brain</h3>
+    <p class="muted">Sage works out of the box with a built-in, research-grounded coaching engine. For open-ended, deeper conversation, connect Claude with your own Anthropic API key. The key stays in this browser (localStorage) and is sent only to api.anthropic.com.</p>
+    <label>Anthropic API key (optional)
+      <input type="password" id="keyIn" placeholder="sk-ant-…" autocomplete="off">
+    </label>
+    <div class="row">
+      <button type="button" class="ghost small" id="clearKey">Remove key</button>
+      <span class="muted" id="brainState"></span>
+    </div>
+    <div class="row end">
+      <button class="primary" id="saveSettings" value="save">Done</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="face.js"></script>
+<script src="science.js"></script>
+<script src="brain.js"></script>
+<script src="lab.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
